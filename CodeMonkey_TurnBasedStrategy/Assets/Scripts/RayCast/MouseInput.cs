@@ -5,7 +5,7 @@ using UnityEngine;
 public class MouseInput : MonoBehaviour
 {
     public static MouseInput instance;
-    public Vector3 currentPosition;
+    private Vector3 currentPosition;
     [SerializeField] private LayerMask targetRay;
     
     private void Awake() {

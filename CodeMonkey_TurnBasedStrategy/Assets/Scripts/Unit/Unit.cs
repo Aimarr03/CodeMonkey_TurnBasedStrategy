@@ -9,26 +9,27 @@ public class Unit : MonoBehaviour
     private Vector3 targetPosition;
     const string IsWalking = "IsWalking";
     private float speed;
-    private void Start() {
+    private float rotateSpeed;
+    private void Awake() {
         targetPosition = transform.position;
         speed = 2f;
+        rotateSpeed = 10f;
     }
     private void Update() {
         if(Vector3.Distance(targetPosition, transform.position) > 0.3f){
-            Vector3 MoveDirection = targetPosition - transform.position;
+            Vector3 MoveDirection = (targetPosition - transform.position).normalized;
             transform.position += MoveDirection * speed * Time.deltaTime;
             animator.SetBool("IsWalking", true);
+
+            
+            transform.forward = Vector3.Lerp(transform.forward, MoveDirection, Time.deltaTime * rotateSpeed);
         }
         else{
             animator.SetBool("IsWalking", false);
         }
-        if(Input.GetMouseButton(0)){
-            Move(MouseInput.GetMousePosition());
-            
-        }
     }
 
-    private void Move(Vector3 newPosition){
+    public void Move(Vector3 newPosition){
         targetPosition = newPosition;
     }
 }
