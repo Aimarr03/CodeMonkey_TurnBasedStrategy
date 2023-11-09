@@ -52,7 +52,6 @@ public class CameraController : MonoBehaviour
     }
     void Zooming(){
         Vector3 offset = cinemachineTransposer.m_FollowOffset;
-        Debug.Log(Input.mouseScrollDelta);
         if(Input.mouseScrollDelta.y > 0){
             offset.y -= scrollSpeed;
         }
