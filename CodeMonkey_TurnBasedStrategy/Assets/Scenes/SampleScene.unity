@@ -607,7 +607,7 @@ PrefabInstance:
     - target: {fileID: 8553230700757043100, guid: 9b9ec3a5e77602847a3f8b249596312f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.59
+      value: 4.35
       objectReference: {fileID: 0}
     - target: {fileID: 8553230700757043100, guid: 9b9ec3a5e77602847a3f8b249596312f,
         type: 3}
@@ -780,6 +780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1801027860}
   - component: {fileID: 1801027859}
+  - component: {fileID: 1801027861}
   m_Layer: 0
   m_Name: Testing
   m_TagString: Untagged
@@ -799,8 +800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366a0bdbf2ef8614ab1e1aaf90b58977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugPrefab: {fileID: 7724849789475515522, guid: 7dd83140c93f8724b86412761432953f,
-    type: 3}
 --- !u!4 &1801027860
 Transform:
   m_ObjectHideFlags: 0
@@ -816,6 +815,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1801027861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801027858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d3077947d8581945b89b3401596adf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugPrefab: {fileID: 7724849789475515522, guid: 7dd83140c93f8724b86412761432953f,
+    type: 3}
 --- !u!1001 &3799491264560704671
 PrefabInstance:
   m_ObjectHideFlags: 0

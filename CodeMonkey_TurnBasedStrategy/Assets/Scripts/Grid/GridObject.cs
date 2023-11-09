@@ -6,8 +6,27 @@ public class GridObject
 {
     public GridSystem gridSystem;
     public GridPosition gridPosition;
+    private List<Unit> units;
     public GridObject(GridSystem gridSystem, GridPosition gridPosition){
         this.gridSystem = gridSystem;
         this.gridPosition = gridPosition;
+        units = new List<Unit>();
+    }
+    public void AddUnit(Unit unit){
+        units.Add(unit);
+    }
+    public void RemoveUnit(Unit unit){
+        units.Remove(unit);
+    }
+    public List<Unit> GetUnit(){
+        return units;
+    }
+    public override string ToString()
+    {
+        string formatUnits = "";
+        foreach(Unit unit in units){
+            formatUnits += $"{unit},";
+        }
+        return gridPosition.ToString() + "\n " + formatUnits;
     }
 }

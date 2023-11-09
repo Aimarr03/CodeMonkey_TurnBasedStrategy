@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.Compression;
 using UnityEngine;
 
 public class GridSystem
@@ -29,14 +30,22 @@ public class GridSystem
             Mathf.FloorToInt((worldPosition.z/cellSize))
         );
     }
+    public GridObject GetGridObject(GridPosition gridPosition){
+        if(!checkGridBoundary(gridPosition)) return null;
+        return gridObjects[gridPosition.x, gridPosition.z];
+    }
+    public bool checkGridBoundary(GridPosition gridPosition){
+        bool x_Axis= gridPosition.x >= 0 || gridPosition.x <= width;
+        bool z_Axis = gridPosition.z >= 0 || gridPosition.z <= height;
+        return x_Axis || z_Axis;
+    }
     public void CreateDebugPrefab(Transform prefab){
         for(int x = 0; x < width; x++){
             for(int z =0; z< height; z++){
                 GridPosition gridPosition = new GridPosition(x,z);
                 Transform gameObjectInstantiated = GameObject.Instantiate(prefab, GetWorldPosition(gridPosition), Quaternion.identity);
                 gameObjectInstantiated.TryGetComponent<DebugGridObject>(out DebugGridObject debugGrid);
-                string formatText = $"x: {x}; z: {z}";
-                debugGrid.SetTextMeshPro(formatText);
+                debugGrid.SetGridObject(gridObjects[x,z]);
             }
         }
     }
