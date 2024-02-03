@@ -15,6 +15,10 @@ public class SelectedUnitVisual : MonoBehaviour
     private void Start() {
         ActionSelectedUnit.instance.SelectedUnit +=  OnSelectedUnit;
     }
+    private void OnDestroy()
+    {
+        ActionSelectedUnit.instance.SelectedUnit -= OnSelectedUnit;
+    }
     private void OnSelectedUnit(object sender, EventArgs empty){
         Unit currentUnit = ActionSelectedUnit.instance.GetUnit();
         if(currentUnit == unit){

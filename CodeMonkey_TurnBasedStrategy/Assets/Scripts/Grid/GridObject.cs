@@ -18,7 +18,7 @@ public class GridObject
     public void RemoveUnit(Unit unit){
         units.Remove(unit);
     }
-    public List<Unit> GetUnit(){
+    public List<Unit> GetUnits(){
         return units;
     }
     public override string ToString()
@@ -28,5 +28,13 @@ public class GridObject
             formatUnits += $"{unit},";
         }
         return gridPosition.ToString() + "\n " + formatUnits;
+    }
+    public bool ContainUnit()
+    {
+        return units.Count > 0;
+    }
+    public Unit GetUnit()
+    {
+        return units[0];
     }
 }

@@ -14,29 +14,53 @@ public class LevelGrid : MonoBehaviour
             return;
         }
         instance = this;
+        gridSystem = new GridSystem(10, 10, 2);
+        gridSystem.CreateDebugPrefab(DebugPrefab);
     }
     public void Start(){
-        gridSystem = new GridSystem(10,10,2);
-        gridSystem.CreateDebugPrefab(DebugPrefab);
+        
     }
     private void Update() {
 
     }
     public void SetUnitAtGridPosition(GridPosition gridPosition, Unit unit){
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
-        gridObject.AddUnit(unit);
+        if(gridObject != null)
+        {
+            gridObject.AddUnit(unit);
+        }
     }
     public List<Unit> GetUnitAtGridPosition(GridPosition gridPosition){
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
-        return gridObject.GetUnit();
+        return gridObject.GetUnits();
     }
     public void ClearUnitAtGridPosition(GridPosition gridPosition, Unit unit){
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
-        gridObject.RemoveUnit(unit);
+        if (gridObject != null)
+        {
+            gridObject.RemoveUnit(unit);
+        }
     }
     public void ChangeUnitGridToAnother(GridPosition original, GridPosition destination, Unit unit){
         ClearUnitAtGridPosition(original, unit);
         SetUnitAtGridPosition(destination, unit);
     }
     public GridPosition GetGridPosition(Vector3 WorldPosition) => gridSystem.GetGridPosition(WorldPosition);
+
+    public bool CheckGridBoundary(GridPosition gridPosition) => gridSystem.CheckGridBoundary(gridPosition);
+
+    public Vector3 GetWorldPosition(GridPosition gridPosition) => gridSystem.GetWorldPosition(gridPosition);
+
+
+    public int GetWidth() => gridSystem.GetWidth();
+
+    public int GetHeight() => gridSystem.GetHeight();
+
+    public Unit GetUnitGridObject(GridPosition gridPosition) => gridSystem.GetGridObject(gridPosition).GetUnit();
+
+    public bool CheckContainUnit(GridPosition gridPosition)
+    {
+        GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+        return gridObject.ContainUnit();
+    }
 }

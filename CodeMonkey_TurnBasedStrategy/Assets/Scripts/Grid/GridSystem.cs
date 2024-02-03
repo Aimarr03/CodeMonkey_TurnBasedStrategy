@@ -24,6 +24,12 @@ public class GridSystem
     public Vector3 GetWorldPosition(GridPosition gridPosition){
         return new Vector3(gridPosition.x , 0, gridPosition.z) * cellSize;
     }
+    public Vector3 GetMiddlePosition(GridPosition gridPosition)
+    {
+        int middleSize =(int) cellSize / 2;
+        Vector3 middlePosition = new Vector3(gridPosition.x ,0, gridPosition.z) * middleSize;
+        return middlePosition;
+    }
     public GridPosition GetGridPosition(Vector3 worldPosition){
         return new GridPosition(
             Mathf.FloorToInt((worldPosition.x/cellSize)),
@@ -31,13 +37,13 @@ public class GridSystem
         );
     }
     public GridObject GetGridObject(GridPosition gridPosition){
-        if(!checkGridBoundary(gridPosition)) return null;
+        if(!CheckGridBoundary(gridPosition)) return null;
         return gridObjects[gridPosition.x, gridPosition.z];
     }
-    public bool checkGridBoundary(GridPosition gridPosition){
-        bool x_Axis= gridPosition.x >= 0 || gridPosition.x <= width;
-        bool z_Axis = gridPosition.z >= 0 || gridPosition.z <= height;
-        return x_Axis || z_Axis;
+    public bool CheckGridBoundary(GridPosition gridPosition){
+        bool x_Axis = gridPosition.x >= 0 && gridPosition.x < width;
+        bool z_Axis = gridPosition.z >= 0 && gridPosition.z < height;
+        return x_Axis && z_Axis;
     }
     public void CreateDebugPrefab(Transform prefab){
         for(int x = 0; x < width; x++){
@@ -48,5 +54,13 @@ public class GridSystem
                 debugGrid.SetGridObject(gridObjects[x,z]);
             }
         }
+    }
+    public int GetWidth()
+    {
+        return width;
+    }
+    public int GetHeight()
+    {
+        return height;
     }
 }
