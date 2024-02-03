@@ -68,8 +68,8 @@ public class ShootAction : BaseAction
                 currentShootingState = ShootingState.CoolingOff;
                 break;
             case ShootingState.CoolingOff:
-                FinishAction();
                 currentShootingState = ShootingState.Idle;
+                FinishAction();
                 break;
         }
     }
@@ -129,11 +129,15 @@ public class ShootAction : BaseAction
 
     public override void TakeAction(GridPosition position, Action action)
     {
-        StartAction(action);
         currentShootingState = ShootingState.Aiming;
         targetUnit = LevelGrid.instance.GetUnitGridObject(position);
         TargetUnitPosition = targetUnit.transform.position;
         currentTimer = MAX_TIME_AIMING;
+        StartAction(action);
         
+    }
+    public Unit GetTargetUnit()
+    {
+        return targetUnit;
     }
 }

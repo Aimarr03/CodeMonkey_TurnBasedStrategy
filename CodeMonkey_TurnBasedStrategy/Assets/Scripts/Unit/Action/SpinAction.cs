@@ -25,9 +25,9 @@ public class SpinAction : BaseAction
     }
     public override void TakeAction(GridPosition gridPosition, Action ActComplete)
     {
-        StartAction(ActComplete);
         spinAmount = 0f;
         rotationVector = transform.eulerAngles;
+        StartAction(ActComplete);
     }
     public override string GetName()
     {

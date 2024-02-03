@@ -193,3 +193,4 @@ MonoBehaviour:
   trailRenderer: {fileID: 8808404534820571346}
   BulletVFX: {fileID: 7866476545777216446, guid: 1750c8eddcd7a6c4cabcec9537624e30,
     type: 3}
+  damage: 12

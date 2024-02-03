@@ -6,16 +6,29 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     public event EventHandler UnitDie;
-    [SerializeField] private int health = 100;
+    public event EventHandler TakeDamageEvent;
+    private int currentHealth;
+    [SerializeField] private int maxHealth = 100;
+
+    private void Awake()
+    {
+        currentHealth = maxHealth;
+    }
 
     public void TakeDamage(int damage)
     {
-        health = Mathf.Clamp(health-damage, 0, health);
-        if(health == 0)
+        Debug.Log("Take Damage " + damage);
+        currentHealth = Mathf.Clamp(currentHealth-damage, 0, maxHealth);
+        TakeDamageEvent?.Invoke(this, EventArgs.Empty);
+        if(currentHealth == 0)
         {
             Debug.Log("Unit Die");
             Die();
         }
+    }
+    public float PercentageHealth()
+    {
+        return (float) currentHealth / maxHealth;
     }
     private void Die()
     {

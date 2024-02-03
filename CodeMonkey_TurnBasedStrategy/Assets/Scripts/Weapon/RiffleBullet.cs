@@ -6,6 +6,7 @@ public class RiffleBullet : MonoBehaviour
 {
     [SerializeField] private TrailRenderer trailRenderer;
     [SerializeField] private Transform BulletVFX;
+    [SerializeField] private int damage;
     private Vector3 TargetPosition;
     private const float BULLET_SPEED = 50f;
     private Unit targetShooter;
@@ -31,7 +32,7 @@ public class RiffleBullet : MonoBehaviour
             transform.position = TargetPosition;
             trailRenderer.transform.parent = null;
             Destroy(gameObject);
-            targetShooter.TakeDamage(1000);
+            targetShooter.TakeDamage(damage);
             Instantiate(BulletVFX, TargetPosition, Quaternion.identity);
         }
     }

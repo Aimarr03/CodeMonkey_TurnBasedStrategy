@@ -8,6 +8,8 @@ public abstract class BaseAction : MonoBehaviour
     protected bool isAction;
     protected Unit unit;
     protected Action ActComplete;
+    public static event EventHandler ActionStarted;
+    public static event EventHandler ActionFinished;
 
     protected virtual void Awake()
     {
@@ -33,10 +35,16 @@ public abstract class BaseAction : MonoBehaviour
     {
         ActComplete = action;
         isAction = true;
+        ActionStarted?.Invoke(this, EventArgs.Empty);
     }
     protected void FinishAction()
     {
         isAction = false;
         ActComplete();
+        ActionFinished?.Invoke(this, EventArgs.Empty);
+    }
+    public Unit GetUnit()
+    {
+        return unit;
     }
 }
