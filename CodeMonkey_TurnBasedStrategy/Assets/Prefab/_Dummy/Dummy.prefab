@@ -700,7 +700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f0c3a7aad49574ebbe257b036f3072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxDistance: 7
+  MaxDistance: 2
 --- !u!114 &1492628419943470702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,7 +725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80b530201fa6e7945bde2ca88ba8a1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxShootingDistance: 7
+  MaxShootingDistance: 3
 --- !u!114 &7874305946297875217
 MonoBehaviour:
   m_ObjectHideFlags: 0

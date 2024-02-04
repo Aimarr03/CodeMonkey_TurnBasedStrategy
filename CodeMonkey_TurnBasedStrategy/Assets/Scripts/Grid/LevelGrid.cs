@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGrid : MonoBehaviour
 {
-    
+    public event EventHandler OnAnyUnitMoveAnyUnit;
+
     public static LevelGrid instance;
     [SerializeField] private Transform DebugPrefab;
     GridSystem gridSystem;
@@ -44,6 +46,7 @@ public class LevelGrid : MonoBehaviour
     public void ChangeUnitGridToAnother(GridPosition original, GridPosition destination, Unit unit){
         ClearUnitAtGridPosition(original, unit);
         SetUnitAtGridPosition(destination, unit);
+        OnAnyUnitMoveAnyUnit?.Invoke(this, EventArgs.Empty);
     }
     public GridPosition GetGridPosition(Vector3 WorldPosition) => gridSystem.GetGridPosition(WorldPosition);
 

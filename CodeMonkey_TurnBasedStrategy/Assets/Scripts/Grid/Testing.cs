@@ -13,7 +13,7 @@ public class Testing : MonoBehaviour
         {
             List<GridPosition> validMoveGridArray = unit.GetMoveAction().GetValidateMovePosition();
             GridVisualSystem.Instance.HideAllGridVisual();
-            GridVisualSystem.Instance.ShowVisualGrid(validMoveGridArray);
+            //GridVisualSystem.Instance.ShowVisualGrid(validMoveGridArray);
         }
     }
 }

@@ -62,6 +62,11 @@ public class MoveAction : BaseAction
             {
                 GridPosition offsetPosition = new GridPosition(x, z);
                 GridPosition moveablePosition = unitPosition + offsetPosition;
+                int totalDistance = Mathf.Abs(x) + Mathf.Abs(z);
+                if (totalDistance > MaxDistance)
+                {
+                    continue;
+                }
                 if (!LevelGrid.instance.CheckGridBoundary(moveablePosition))
                 {
                     continue;
