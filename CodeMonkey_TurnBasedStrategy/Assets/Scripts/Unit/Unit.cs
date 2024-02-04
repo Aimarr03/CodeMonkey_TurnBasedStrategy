@@ -16,6 +16,8 @@ public class Unit : MonoBehaviour
     private int actionPoints;
 
     public static event EventHandler OnAnyResetActionPoints;
+    public static event EventHandler OnAnyUnitSpawned;
+    public static event EventHandler OnAnyUnitDied;
 
     [SerializeField] private bool isEnemy = false;
     
@@ -31,11 +33,13 @@ public class Unit : MonoBehaviour
         LevelGrid.instance.SetUnitAtGridPosition(gridPosition, this);
         TurnSystem.instance.UpdateTurn += Instance_UpdateTurn;
         healthSystem.UnitDie += HealthSystem_UnitDie;
+        OnAnyUnitSpawned?.Invoke(this, EventArgs.Empty);
     }
 
     private void HealthSystem_UnitDie(object sender, EventArgs e)
     {
         LevelGrid.instance.ClearUnitAtGridPosition(gridPosition, this);
+        OnAnyUnitDied?.Invoke(this, EventArgs.Empty);
         Destroy(gameObject);
     }
 

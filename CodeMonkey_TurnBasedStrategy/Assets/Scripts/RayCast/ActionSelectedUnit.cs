@@ -117,10 +117,15 @@ public class ActionSelectedUnit : MonoBehaviour
         return false;
     }
 
-    private void SetUnit(Unit unit){
+    public void SetUnit(Unit unit){
         currentUnit = unit;
+        if (currentUnit.IsEnemy()) return;
         SetSelectedAction(currentUnit.GetMoveAction());
         SelectedUnit?.Invoke(this, EventArgs.Empty);
+    }
+    public void TriggerActionExecutedEvent()
+    {
+        ActionExecuted?.Invoke(this, EventArgs.Empty);
     }
     public void SetSelectedAction(BaseAction action)
     {
